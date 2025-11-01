@@ -15,7 +15,7 @@ export default function InstructorDashboard() {
 
   const refreshCourses = () => {
     axios
-      .get('http://localhost:5000/api/courses/instructor', {
+      .get(`${import.meta.env.VITE_API_URL}/courses/instructor`, {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
       })
       .then(res => setCourses(res.data));
@@ -26,7 +26,7 @@ export default function InstructorDashboard() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/courses',
+        `${import.meta.env.VITE_API_URL}/courses`,
         form,
         { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } }
       );
@@ -48,7 +48,7 @@ export default function InstructorDashboard() {
       const data = new FormData();
       data.append('video', videoFile);
       await axios.post(
-        `http://localhost:5000/api/videos/${selectedCourse}`,
+        `${import.meta.env.VITE_API_URL}/videos/${selectedCourse}`,
         data,
         {
           headers: {
@@ -98,12 +98,12 @@ export default function InstructorDashboard() {
                             <button className="text-xs px-2 py-1 rounded-md border border-gray-300 dark:border-gray-600" onClick={async ()=>{
                               const newTitle = prompt('Rename lecture', title);
                               if (!newTitle) return;
-                              await axios.patch(`http://localhost:5000/api/videos/${c._id}/${idx}`, { title: newTitle });
+                              await axios.patch(`${import.meta.env.VITE_API_URL}/videos/${c._id}/${idx}`, { title: newTitle });
                               refreshCourses();
                             }}>Rename</button>
                             <button className="text-xs px-2 py-1 rounded-md bg-red-600 text-white" onClick={async ()=>{
                               if (!confirm('Delete this lecture?')) return;
-                              await axios.delete(`http://localhost:5000/api/videos/${c._id}/${idx}`);
+                              await axios.delete(`${import.meta.env.VITE_API_URL}/videos/${c._id}/${idx}`);
                               refreshCourses();
                             }}>Delete</button>
                           </div>

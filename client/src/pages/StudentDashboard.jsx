@@ -11,7 +11,7 @@ export default function StudentDashboard() {
   useEffect(() => {
     // Fetch all courses
     axios
-      .get('http://localhost:5000/api/courses', {
+      .get(`${import.meta.env.VITE_API_URL}/courses`, {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
       })
       .then((res) => setCourses(res.data));
@@ -21,7 +21,7 @@ export default function StudentDashboard() {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user && user.id) {
       axios
-        .get('http://localhost:5000/api/courses', {
+        .get(`${import.meta.env.VITE_API_URL}/courses`, {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
         })
         .then((res) => {
@@ -36,7 +36,7 @@ export default function StudentDashboard() {
   const enroll = async (id) => {
     try {
       await axios.post(
-        `http://localhost:5000/api/courses/enroll/${id}`,
+        `${import.meta.env.VITE_API_URL}/courses/enroll/${id}`,
         {},
         { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } }
       );

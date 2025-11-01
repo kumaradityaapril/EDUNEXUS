@@ -19,13 +19,13 @@ export default function StudentAssignments() {
     try {
       setLoading(true);
       // Fetch course info
-      const courseRes = await axios.get(`http://localhost:5000/api/courses/${courseId}`, {
+      const courseRes = await axios.get(`${import.meta.env.VITE_API_URL}/courses/${courseId}`, {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
       });
       setCourse(courseRes.data);
 
       // Fetch assignments
-      const assignmentsRes = await axios.get(`http://localhost:5000/api/assignments/${courseId}`, {
+      const assignmentsRes = await axios.get(`${import.meta.env.VITE_API_URL}/assignments/${courseId}`, {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
       });
       setAssignments(assignmentsRes.data);
@@ -46,7 +46,7 @@ export default function StudentAssignments() {
         formData.append('file', files[assignmentId]);
       }
 
-      await axios.post(`http://localhost:5000/api/assignments/submit/${assignmentId}`, formData, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/assignments/submit/${assignmentId}`, formData, {
         headers: { 
           Authorization: 'Bearer ' + localStorage.getItem('token'),
           'Content-Type': 'multipart/form-data'

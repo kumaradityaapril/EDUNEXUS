@@ -13,7 +13,7 @@ export default function CourseLectures() {
   useEffect(() => {
     async function fetchCourse() {
       try {
-        const res = await axios.get(`http://localhost:5000/api/courses/${courseId}` , {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/courses/${courseId}` , {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
         });
         setCourse(res.data);

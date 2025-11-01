@@ -9,21 +9,21 @@ export default function InstructorAssignments() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/courses/instructor', {
+    axios.get(`${import.meta.env.VITE_API_URL}/courses/instructor`, {
       headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
     }).then(res => setCourses(res.data));
   }, []);
 
   const loadAssignments = courseId => {
     setSelectedCourse(courseId);
-    axios.get(`http://localhost:5000/api/assignments/${courseId}`, {
+    axios.get(`${import.meta.env.VITE_API_URL}/assignments/${courseId}`, {
       headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
     }).then(res => setAssignments(res.data));
   };
 
   const createAssignment = async e => {
     e.preventDefault();
-    await axios.post(`http://localhost:5000/api/assignments/${selectedCourse}`, form, {
+    await axios.post(`${import.meta.env.VITE_API_URL}/assignments/${selectedCourse}`, form, {
       headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
     });
     setMessage('Assignment created');

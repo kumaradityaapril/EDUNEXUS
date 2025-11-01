@@ -9,7 +9,7 @@ export default function Signup() {
   const submit = async e => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/auth/register', form);
+      await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, form);
       setMsg("Registration successful! You can now login.");
     } catch (err) {
       setMsg(err.response?.data?.msg || "Error");

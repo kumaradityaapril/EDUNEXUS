@@ -21,7 +21,7 @@ export default function AllAssignments() {
         return;
       }
 
-      const res = await axios.get('http://localhost:5000/api/courses', {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/courses`, {
         headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
       });
 
@@ -32,7 +32,7 @@ export default function AllAssignments() {
       const assignmentsMap = {};
       for (const course of enrolled) {
         try {
-          const assignmentRes = await axios.get(`http://localhost:5000/api/assignments/${course._id}`, {
+          const assignmentRes = await axios.get(`${import.meta.env.VITE_API_URL}/assignments/${course._id}`, {
             headers: { Authorization: 'Bearer ' + localStorage.getItem('token') }
           });
           assignmentsMap[course._id] = assignmentRes.data;
