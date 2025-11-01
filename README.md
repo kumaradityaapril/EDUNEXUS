@@ -1,4 +1,4 @@
-#EduNexus: Next-Gen LMS Platform
+# EduNexus: Next-Gen LMS Platform
 A modern, full-featured Learning Management System (LMS) for institutions and online classrooms. EduNexus empowers instructors and students with seamless course management, assignments, video lectures, real-time chat, and beautiful, responsive UI/UX.
 
 🌐 Live Demo
