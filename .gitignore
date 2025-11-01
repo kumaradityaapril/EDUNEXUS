@@ -1,0 +1,20 @@
+# Ignore node dependencies
+node_modules/
+
+# Ignore local env variables and secrets
+.env
+.env.local
+.env.*.local
+
+# Ignore build/dist folders (Vite and backend)
+dist/
+build/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
